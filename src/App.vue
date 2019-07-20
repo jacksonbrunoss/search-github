@@ -8,12 +8,12 @@
         <p class="lead">Digite um nome para encontrar usuários e repositórios</p>
         <input @keyup="getGithub" type="text" id="search" class="form-control"  required>
       </div>
-      <div class="row mt-3" >
+      <div class="row mt-3" v-if="user.length !== 0">
         <div class='col-md-4'>
-          
+          <Profile :user="user" />
         </div>
         <div class="col-md-8">
-          
+          <Repos v-for="repo in repos" :key="repo" :repo="repo" />
         </div>
       </div>
     </div>
@@ -23,7 +23,9 @@
 
 <script>
 import Navbar from "@/components/Navbar.vue";
-import axios from 'axios'
+import Profile from '@/components/Profile.vue'
+import Repos from "@/components/Repos.vue";
+import axios from 'axios';
 
 export default {
   name: 'app',
@@ -41,7 +43,9 @@ export default {
     }
   },
   components: {
-    Navbar
+    Navbar,
+    Profile,
+    Repos
   },
   methods: {
     getGithub(e) {
@@ -49,9 +53,11 @@ export default {
       const { url, client_id, client_secret, count, sort } = this.github
       axios.get(`${url}/${user}?client_id=${client_id}&client_secret=${client_secret}`)
       .then(({data}) => {this.user = data});
+      axios.get(`${url}/${user}/repos?per_page=${count}&sort=${sort}&client_id=${client_id}&client_secret=${client_secret}`)
+      .then(({data}) => {this.repos = data})
+    }
     }
   }
-}
 </script>
 
 <style>
