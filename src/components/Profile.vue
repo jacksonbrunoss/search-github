@@ -2,7 +2,7 @@
     <div>
         <div class="row">
             <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
+                <div class="card card-global" style="width: 18rem;">
                     <img class="card-img-top" :src="user.avatar_url" >
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">

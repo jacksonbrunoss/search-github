@@ -69,5 +69,4 @@ export default {
     box-sizing: border-box;
     font-family: 'Ubuntu', sans-serif;
   }
-  
 </style>
