@@ -18,7 +18,7 @@
                             <span class="badge">{{ user.email }}</span>
                         </li>
                         <li class="list-group-item">
-                            Localisação:
+                            Localização:
                             <span class="badge">{{ user.location }}</span>
                         </li>
                         <li class="list-group-item">
